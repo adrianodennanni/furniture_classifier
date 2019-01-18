@@ -1,0 +1,141 @@
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+html {
+  background-color: #FFF;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: #444;
+  background-attachment: fixed;
+  font-family: "Noto Sans", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container {
+  margin: auto;
+  padding: 25px 0;
+  max-width: 1025px;
+}
+
+h1, h2, p {
+  margin-bottom: 15px;
+}
+h1, h2 {
+  line-height: 1em;
+}
+.center {
+  text-align: center;
+}
+h2.subtitle {
+  font-size: inherit;
+  font-style: italic;
+  font-weight: normal;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.swiper-container,
+.swiper-container * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.swiper-container .swiper-no-swiping .swiper-button-prev,
+.swiper-container .swiper-no-swiping .swiper-button-next {
+  opacity: 0;
+}
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  opacity: .1;
+}
+
+.product-gallery .product-photos-side,
+.product-gallery .product-photo-main {
+  position: relative;
+  width: 48%;
+}
+
+.tf-results {
+  position: relative;
+  height: 100%;
+  float: right;
+  width: 48%;
+  padding: 20px;
+}
+
+.product-gallery .product-photo-main {
+  margin-bottom: 30px;
+  float: left;
+  border-style: groove;
+  border-width: thin;
+}
+
+.product-gallery .product-photos-side .swiper-container {
+  height: 70px;
+  border-style: groove;
+  border-width: thin;
+}
+
+.product-gallery .product-photo-main .swiper-container {
+  height: 320px;
+}
+
+.product-gallery .product-photos-side .swiper-slide {
+  width: 70px;
+  opacity: .4;
+  transition: 225ms opacity ease-in-out;
+}
+
+.product-gallery .product-photos-side .swiper-slide.swiper-slide-active {
+  opacity: 1;
+}
+
+.product-gallery .swiper-container {
+  position: static;
+  width: 100%;
+}
+
+.product-gallery .swiper-slide {
+  cursor: pointer;
+  text-align: center;
+}
+
+.product-gallery img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.product-photos-side .swiper-slide img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 1025px) {
+  .container {
+    padding: 0;
+  }
+}

@@ -1,6 +1,7 @@
 require 'byebug'
 require 'dotenv/load'
 require 'down'
+require 'fastimage'
 require 'fileutils'
 require 'json'
 require 'parallel'
@@ -24,12 +25,26 @@ def download_dataset(name)
   end
 
   Parallel.each(json['images'], in_threads: 100, progress: "Downloading #{name} furniture images") do |ih|
-    Down.download(ih['url'][0], destination: "#{@target_directory}/#{name}/#{id_label[ih['image_id']]}/#{ih['image_id']}.jpg")
-  rescue StandardError
+    target = "#{@target_directory}/#{name}/#{id_label[ih['image_id']]}/#{ih['image_id']}"
+    extension = ih['url'][0][/\.(png|jpg|jpeg)/]
+
+    next unless extension
+
+    target += extension
+    next if File.file?(target)
+
+    Down.download(ih['url'][0], destination: target)
+  rescue StandardError => e
+  end
+
+  Dir["/ssd/datasets/furniture/#{name}/*/*"].each do |file|
+    size = FastImage.size(file)
+    if !size.kind_of?(Array) || size.size != 2 || size[0] < 20 || size[1] < 20 
+     FileUtils.rm(file)
+    end
   end
 
 end
 
 download_dataset('validation')
-download_dataset('test')
 download_dataset('train')

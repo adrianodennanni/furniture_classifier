@@ -7,6 +7,7 @@ GEM
     dotenv (2.6.0)
     down (4.8.0)
       addressable (~> 2.5)
+    fastimage (2.1.5)
     parallel (1.12.1)
     public_suffix (3.0.3)
     ruby-progressbar (1.10.0)
@@ -18,6 +19,7 @@ DEPENDENCIES
   byebug
   dotenv
   down
+  fastimage
   parallel
   ruby-progressbar
 
