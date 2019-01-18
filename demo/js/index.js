@@ -1,3 +1,4 @@
+// Layout stuff
 $(document).ready(function() {
   var swiperSide = new Swiper('.product-photos-side .swiper-container', {
     direction: 'horizontal',
@@ -16,3 +17,7 @@ $(document).ready(function() {
   swiperSide.params.control = swiperProduct;
   swiperProduct.params.control = swiperSide;
 });
+
+// REAL stuff
+tf = window.tf;
+const model = tf.loadModel('./model/model.json');
