@@ -20,4 +20,4 @@ $(document).ready(function() {
 
 // REAL stuff
 tf = window.tf;
-const model = tf.loadModel('./model/model.json');
+const model = tf.loadModel('https://raw.githubusercontent.com/adrianodennanni/furniture_classifier/master/demo/model/model.json');
