@@ -56,9 +56,9 @@ trained_model = tf.keras.applications.mobilenet_v2.MobileNetV2(
 output = tf.keras.layers.Dense(N_CLASSES, activation='softmax', kernel_initializer=kernel_initializer)(trained_model.output)
 model = tf.keras.Model(inputs=trained_model.input, outputs=output)
 
-# Callback para salvar os pesos, com base na melhor val_acc
+# Callback to save weights, based on val_acc
 model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
-  './checkpoints/{epoch:02d}_{val_acu_avg:.4f}.h5',
+  './checkpoints/{epoch:02d}_{val_acc:.4f}.h5',
   save_weights_only=False,
   verbose=1,
   monitor='val_acc',
@@ -66,14 +66,14 @@ model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
   mode='max'
 )
 
-# Callback para plotar dados no TensorBoard
+# Callbackto plot data on TensorBoard
 tensorboard_callback = tf.keras.callbacks.TensorBoard(
   log_dir='./logs/furniture_classifier',
   histogram_freq=0,
   batch_size=BATCH_SIZE
 )
 
-# Callback para reduzir o valor da learning rate após plateaus
+# Callback to reduce learning rate after plateaus
 reduce_lr_callback = tf.keras.callbacks.ReduceLROnPlateau(
   monitor='val_acc',
   factor=0.5,

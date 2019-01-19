@@ -8,13 +8,12 @@
 
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css'>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 
 
 </head>
 
 <body>
-
   <div class="main">
     <div class="container">
       <article>
@@ -88,12 +87,22 @@
                   <img src="./images/12.jpg">
                 </div>
               </div>
+              <div class="swiper-slide">
+                <img id="imageFromUser">
+                <div id="textInfoSendImage">
+                  Use the menu on the right to use a photo from your computer!
+                </div>
+              </div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
         <div class="tf-results">
-          Select a image on the left  <b>OR</b>  <input type="file" id="fileInput"/>
+          Select a image on the left
+          <br>
+          <b>OR</b>
+          <br>
+          <input type="file" id="userImageInput" onchange="startUserImage()" accept="image/x-png,image/jpg,image/jpeg"/>
           <br>
           <h1 id="results_title"></h1>
           <h2 id="first_place"></h2>
@@ -165,6 +174,11 @@
                   <img src="./images/12.jpg">
                 </div>
               </div>
+              <div class="swiper-slide">
+                <div class="swiper-zoom-container">
+                  <img src="upload_icon.png" style="padding:15px;">
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -177,11 +191,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/js/swiper.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/tensorflow/0.14.2/tf.min.js'></script>
 
-
-
-  <script src="js/index.js"></script>
-
-
+  <script src="index.js"></script>
 
 
 </body>
