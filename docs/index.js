@@ -55,10 +55,8 @@ async function inferImage(image){
   $("#fifth_place").text("");
 
   // Deep Learning Inference
-  imagePixels = image;
-  imagePixels.width  = 224;
-  imagePixels.height = 224;
-  imagePixels = tf.fromPixels(imagePixels).expandDims(0).toFloat().div(tf.scalar(255));
+  imagePixels = tf.fromPixels(image).expandDims(0).toFloat().div(tf.scalar(255));
+  imagePixels = tf.image.resizeBilinear(imagePixels, [224, 224])
   predictedArray = await model.predict(imagePixels).as1D().data();
 
   response = []
