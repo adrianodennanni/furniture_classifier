@@ -29,23 +29,38 @@ $(document).ready(function() {
   swiperProduct.params.control = swiperSide;
 
   swiperSide.on('transitionEnd', function () {
-    inferImage($('.swiper-slide-active img')[0]);
+    if (swiperSide.activeIndex == 12){
+      if($("#imageFromUser")[0].src != ""){
+        inferImage($("#imageFromUser")[0]);
+      }
+      else {
+        $("#results_title").text("");
+        $("#first_place").text("");
+        $("#second_place").text("");
+        $("#third_place").text("");
+        $("#fourth_place").text("");
+        $("#fifth_place").text("");
+      }
+    } else {
+      inferImage($('.swiper-slide-active img')[0]);
+    }
   });
 
   loadMN.then(function(){
-    inferImage($('.swiper-slide-active img')[0])
+    inferImage($('.swiper-slide-active img')[0]);
   });
 });
 
-function startUserImage(imageFilePath) {
+async function startUserImage(imageFilePath) {
   $("#textInfoSendImage").remove();
   var imgDataURL = window.URL.createObjectURL(document.getElementById('userImageInput').files[0]);
   swiperProduct.slideTo(12);
-  $("#imageFromUser").attr("src", imgDataURL);
+  $("#imageFromUser")[0].src = imgDataURL;
+  await new Promise(resolve => setTimeout(resolve, 10));
+  inferImage($("#imageFromUser")[0]);
 };
 
 async function inferImage(image){
-  console.log($('.swiper-slide-active img')[0].src);
   // Set text as "Processing" and erase old results
   $("#results_title").text("Processing...");
   $("#first_place").text("");
@@ -59,11 +74,18 @@ async function inferImage(image){
   imagePixels = tf.image.resizeBilinear(imagePixels, [224, 224])
   predictedArray = await model.predict(imagePixels).as1D().data();
 
-  response = []
+  response = {}
 
-  for (i = 1; i <= 128; i++) {
-    response.push([i, predictedArray[i-1]])
-  }
+  for (i = 0; i <= 127; i++) {
+    if(Number.isFinite(response[labels[i][1]])){
+      response[labels[i][1]] += predictedArray[i];
+    }
+    else {
+      response[labels[i][1]] = predictedArray[i];
+    }
+  };
+
+  response = Object.keys(response).map(item => [item, response[item]]);
 
   response.sort(function(a, b) {
       return a[1] < b[1] ? 1 : -1;
@@ -80,5 +102,5 @@ async function inferImage(image){
 }
 
 function buldLabel(response, index){
-  return labels[response[index][0]-1][1]+": "+response[index][1].toFixed(4)
+  return response[index][0]+": "+response[index][1].toFixed(4);
 }
