@@ -80,5 +80,5 @@ async function inferImage(image){
 }
 
 function buldLabel(response, index){
-  return labels[response[index][0]][1]+": "+response[index][1].toFixed(4)
+  return labels[response[index][0]-1][1]+": "+response[index][1].toFixed(4)
 }
