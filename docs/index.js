@@ -9,6 +9,10 @@ $(document).ready(function() {
     model = await tf.model({inputs: modelWeigths.inputs, outputs: layer.output});
   };
 
+  canvas = document.createElement('canvas');
+  canvas.width  = 224;
+  canvas.height = 224;
+  ctx = canvas.getContext("2d");
   loadMN = loadMobilenet();
 
   swiperSide = new Swiper('.product-photos-side .swiper-container', {
@@ -70,8 +74,9 @@ async function inferImage(image){
   $("#fifth_place").text("");
 
   // Deep Learning Inference
-  imagePixels = tf.fromPixels(image).expandDims(0).toFloat().div(tf.scalar(255));
-  imagePixels = tf.image.resizeBilinear(imagePixels, [224, 224])
+  ctx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight, 0, 0, 224, 224);
+  imageData = ctx.getImageData(0, 0, 224, 224);
+  imagePixels = tf.fromPixels(imageData).expandDims(0).toFloat().div(tf.scalar(255));
   predictedArray = await model.predict(imagePixels).as1D().data();
 
   response = {}
