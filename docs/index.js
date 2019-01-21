@@ -58,10 +58,13 @@ $(document).ready(function() {
 async function startUserImage(imageFilePath) {
   $("#textInfoSendImage").remove();
   var imgDataURL = window.URL.createObjectURL(document.getElementById('userImageInput').files[0]);
-  swiperProduct.slideTo(12);
   $("#imageFromUser")[0].src = imgDataURL;
-  await new Promise(resolve => setTimeout(resolve, 10));
-  inferImage($("#imageFromUser")[0]);
+  if(swiperProduct.activeIndex == 12){
+    await new Promise(resolve => setTimeout(resolve, 10));
+    inferImage($("#imageFromUser")[0]);
+  } else{
+    swiperProduct.slideTo(12);
+  };
 };
 
 async function inferImage(image){
