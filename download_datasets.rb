@@ -34,12 +34,12 @@ def download_dataset(name)
     next if File.file?(target)
 
     Down.download(ih['url'][0], destination: target)
-  rescue StandardError => e
+  rescue StandardError
   end
 
   Dir["/ssd/datasets/furniture/#{name}/*/*"].each do |file|
     size = FastImage.size(file)
-    if !size.kind_of?(Array) || size.size != 2 || size[0] < 20 || size[1] < 20 
+    if !size.kind_of?(Array) || size.size != 2 || size[0] < 20 || size[1] < 20
      FileUtils.rm(file)
     end
   end
