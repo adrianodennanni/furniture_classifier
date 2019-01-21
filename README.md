@@ -1,0 +1,2 @@
+# furniture_classifier
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/19e163953a0d4aefa861350cc3976c61)](https://app.codacy.com/app/adrianodennanni/furniture_classifier?utm_source=github.com&utm_medium=referral&utm_content=adrianodennanni/furniture_classifier&utm_campaign=Badge_Grade_Dashboard)
