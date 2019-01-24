@@ -1,6 +1,7 @@
 # Furniture Classifier
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Maintainability](https://api.codeclimate.com/v1/badges/861fec3feacb1d4519fd/maintainability)](https://codeclimate.com/github/adrianodennanni/furniture_classifier/maintainability)
 
 With this project, you can train a MobileNet v2 neural network able to classify furniture pictures from [iMateralist challenge from Kaggle](https://www.kaggle.com/c/imaterialist-challenge-furniture-2018), using `Tensorflow` + `Keras`.
 
